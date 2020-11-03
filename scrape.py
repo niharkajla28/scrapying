@@ -6,23 +6,24 @@ if __name__ == '__main__':
 
     links1 = []
     subtext1 = []
+
     def requester(para):
         res = requests.get(f'https://news.ycombinator.com/news?p={para}')
         # print(res.text)
         soup = BeautifulSoup(res.text, 'html.parser')
-        #print(soup.body)
+        # print(soup.body)
         # print(soup.body.content)
-        #print(soup.find_all('div'))
-        #print(soup.find_all('a'))
+        # print(soup.find_all('div'))
+        # print(soup.find_all('a'))
         links = soup.select('.storylink')
 
         subtext = soup.select('.subtext')
 
         return links, subtext
-    #print(votes[0].get('id'))
+    # print(votes[0].get('id'))
 
     def sorting(hn_list):
-        return sorted(hn_list, key= lambda k: k['3.points'], reverse= True)
+        return sorted(hn_list, key=lambda k: k['3.points'], reverse=True)
 
 
     def create_custom_hn(links, subtext):
@@ -42,16 +43,14 @@ if __name__ == '__main__':
         return hn
 
     for item in range(10):
-        a, b =requester(item)
+        a, b = requester(item)
         links1 = links1 + a
         subtext1 = subtext1 + b
-
-
 
     list_hn = create_custom_hn(links1, subtext1)
     hacker_news = sorting(list_hn)
 
-    #pprint.pprint(list_hn)
+    # pprint.pprint(list_hn)
     # pprint.pprint(hacker_news)
     count = 0
     for item in hacker_news:

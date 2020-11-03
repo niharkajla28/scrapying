@@ -8,3 +8,4 @@ if __name__ == '__main__':
     b = [5]
     a = a+b
     print(a)
+    print(10)
